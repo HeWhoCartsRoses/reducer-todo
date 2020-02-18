@@ -1,17 +1,10 @@
 import React, { useState, useReducer } from 'react';
-
 import { simpRed, initState } from './reducers/simpReducer';
-
-// dispatch takes in an action object, and calls the reducer function with state and that action.
 console.log(initState)
 const Title = () => {
-    const [state, dispatch] = useReducer(simpRed, initState); // two args - reducer, initialState
-
-
-    // const [title, setTitle] = useState('Hello earthlings!');
-    // const [editing, setEditing] = useState(false);
+    const [state, dispatch] = useReducer(simpRed, initState);
+    console.log(dispatch)
     const [newTitleText, setNewTitleText] = useState('');
-
     const handleChanges = e => {
         setNewTitleText(e.target.value);
     };
@@ -29,7 +22,7 @@ const Title = () => {
 
 
             ) : (
-                    <form>
+                    <div>
                         <input
                             className="title-input"
                             type="text"
@@ -37,6 +30,7 @@ const Title = () => {
                             value={newTitleText}
                             onChange={handleChanges}
                         />
+
                         <button
                             onClick={() => {
                                 dispatch({ type: 'UPDATE_COMPLETED', payload: newTitleText });
@@ -44,7 +38,7 @@ const Title = () => {
                         >
                             Update List
           </button>
-                    </form>
+                    </div>
                 )}
         </div>
     );
